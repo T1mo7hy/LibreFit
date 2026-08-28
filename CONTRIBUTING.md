@@ -165,8 +165,6 @@ the latest Android toolkit:
 - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) for user
   preferences storage.
 - [Coil](https://github.com/coil-kt/coil) for asynchronous loading of images.
-- [Accompanist](https://github.com/google/accompanist) for the handling of user permissions in
-  Jetpack Compose.
 - [Vico](https://github.com/patrykandpatrick/vico) for charts.
 - [Lottie Compose](https://github.com/airbnb/lottie-android) for animations.
 
@@ -204,7 +202,7 @@ We want LibreFit to be accessible to everyone!
 - We use **Weblate** for translations. Join our project here: https://hosted.weblate.org/projects/librefit/librefit/
 - Please, **do not blindly accept machine or AI translations** as they do not understand the
   context. Always double check all translations and their use in LibreFit.
-- A language will be added once it is **completed at least 70%**.
+- A language will be added once it is **completed at least 80%**.
 
 > Thanks to [Weblate](https://weblate.org) for hosting LibreFit's translations!
 
@@ -237,6 +235,7 @@ You can contribute if your target language is on this list:
 | 🇷🇺 Russian         |
 | 🇪🇸 Spanish         |
 | 🇰🇪 Swahili         |
+| 🇸🇪 Swedish         |
 | 🇮🇳 Tamil           |
 | 🇮🇳 Telugu          |
 | 🇹🇭 Thai            |
@@ -256,11 +255,16 @@ these guidelines when adding or modifying exercises:
 * **Format:** Images must have `webp` format, a white background and be consistent with existing
   exercise imagery.
 * **Quality**: Instructions must be clear, step-by-step, and coherent with the provided images.
-* **Asset Organization:** Images must be stored in `app/src/main/assets/`. Create a folder for each
-  exercise named exactly as the `id` in your JSON. Reference these in the JSON using the relative
-  path.
-* **Consistency:** Ensure the `id` is unique and follows kebab-case. Verify there are no duplicate
-  entries in the JSON array and that all JSON syntax is valid (no trailing commas).
+* **Asset Organization:**
+    - Images must be stored in `app/src/main/assets/`. Create a folder for each exercise named exactly as the `id` in your JSON. Reference these in
+      the JSON using the relative path.
+    - The JSON file is located at `app/src/main/res/raw`
+* **Consistency:**
+    - Ensure the `id` is unique and follows `Pascal_Snake_Case`.
+    - The exercises must be ordered alphabetically by ID. The Python script (`validate_exercises_json.py`) provides the correct JSON as
+      `ordered_exercises.json`
+    - Verify there are no duplicate entries in the JSON array and that all JSON syntax is valid (no trailing commas).
+  - Ensure values are allowed by `schemas/exercises-schema.json`
 
 #### Data Validation
 

@@ -8,20 +8,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 -
 
 ### Changed
+
 -
 
 ### Deprecated
+
 -
 
 ### Removed
+
 -
 
 ### Fixed
 
+-
+
+## [0.4.1] - 2026-07-28
+
+This release contains fix for a bug noticed shortly after release v0.4.0. The bug was only visual so no data was affected.
+
+### Fixed
+
+- Visual bug in previous set of workout screen [#140](https://github.com/LibreFitOrg/LibreFit/pull/140)
+
+## [0.4.0] - 2026-07-26
+
+### Added
+
+- Support for imperial system (pounds) [#18](https://github.com/LibreFitOrg/LibreFit/issues/18)
+- Russian 🇷🇺 [#124](https://github.com/LibreFitOrg/LibreFit/pull/124)
+- Add 5 new exercises [#111](https://github.com/LibreFitOrg/LibreFit/pull/111):
+  - Wall Sit (Isometric squat against the wall)
+  - Plank Shoulder Taps
+  - Bottom Push-Up Hold
+  - Cobra Stretch
+  - Jumping Jacks
+
+### Changed
+
+- A new toggle to show images was introduced (off by default). [#29](https://github.com/LibreFitOrg/LibreFit/issues/29)
+- Quicker input for weights with scroll wheel [#74](https://github.com/LibreFitOrg/LibreFit/issues/74)
+
+### Fixed
+
 - Buttons in rest timer notification by refactoring logic [#117](https://github.com/LibreFitOrg/LibreFit/pull/117)
+- Fix language handling and display [#122](https://github.com/LibreFitOrg/LibreFit/pull/122)
 
 ## [0.3.1] - 2026-05-31
 
@@ -96,7 +131,11 @@ Thank you for your support!
 
 First public release. Bugs are expected! Report them so they can be fixed.
 
-[Unreleased]: https://github.com/LibreFitOrg/LibreFit/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/LibreFitOrg/LibreFit/compare/v0.4.1...HEAD
+
+[0.4.1]: https://github.com/LibreFitOrg/LibreFit/compare/v0.4.0...v0.4.1
+
+[0.4.0]: https://github.com/LibreFitOrg/LibreFit/compare/v0.3.1...v0.4.0
 
 [0.3.1]: https://github.com/LibreFitOrg/LibreFit/compare/v0.3.0...v0.3.1
 

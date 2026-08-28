@@ -83,6 +83,7 @@ import org.librefit.enums.WarmupMode
 import org.librefit.enums.exercise.Category
 import org.librefit.enums.exercise.Equipment
 import org.librefit.enums.userPreferences.ThemeMode
+import org.librefit.models.Weight
 import org.librefit.nav.Route
 import org.librefit.ui.components.ExerciseCard
 import org.librefit.ui.components.LibreFitLazyColumn
@@ -143,6 +144,8 @@ fun SharedTransitionScope.WorkoutScreen(
     val isHeaderSticky by viewModel.isHeaderSticky.collectAsStateWithLifecycle()
 
     val useScrollWheelForInput by viewModel.useScrollWheelForInput.collectAsStateWithLifecycle()
+
+    val showExercisesImages by viewModel.displayExercisesImages.collectAsStateWithLifecycle()
 
     val dismissScrollWheelInputAutomatically by viewModel.dismissScrollWheelInputAutomatically.collectAsStateWithLifecycle()
 
@@ -229,6 +232,7 @@ fun SharedTransitionScope.WorkoutScreen(
                 isHeaderSticky = isHeaderSticky,
                 useScrollWheelForInput = useScrollWheelForInput,
                 dismissScrollWheelInputAutomatically = dismissScrollWheelInputAutomatically,
+                showExercisesImages = showExercisesImages,
                 toggleStopwatch = viewModel::toggleStopwatch,
                 updateIdSetWithRunningStopwatch = viewModel::updateIdSetWithRunningStopwatch,
                 onSelectedExerciseIdChange = { id, idExerciseDC ->
@@ -291,13 +295,14 @@ private fun SharedTransitionScope.WorkoutScreenContent(
     idSetWithRunningStopwatch: Long?,
     isHeaderSticky: Boolean,
     useScrollWheelForInput: Boolean,
+    showExercisesImages: Boolean?,
     dismissScrollWheelInputAutomatically: Boolean,
     toggleStopwatch: () -> Unit,
     updateIdSetWithRunningStopwatch: (Long?) -> Unit,
     addSetToExercise: (Long) -> Unit,
     updateSetTime: (Int, Long) -> Unit,
     updateSetReps: (Int, Long) -> Unit,
-    updateSetLoad: (Double, Long) -> Unit,
+    updateSetLoad: (Weight, Long) -> Unit,
     updateSetCompleted: (Boolean, Long) -> Unit,
     deleteSet: (Long) -> Unit,
     updateExerciseNotes: (String, Long) -> Unit,
@@ -430,6 +435,7 @@ private fun SharedTransitionScope.WorkoutScreenContent(
                                 workout = true,
                                 addSet = addSetToExercise,
                                 onDelete = deleteExercise,
+                                showExercisesImages = showExercisesImages,
                                 isCollapsed = isReorderingEnabled,
                                 dragHandleModifier = Modifier.draggableHandle(
                                     onDragStarted = {
@@ -467,6 +473,7 @@ private fun SharedTransitionScope.WorkoutScreenContent(
                                 addSet = addSetToExercise,
                                 onDetail = onSelectedExerciseIdChange,
                                 onDelete = deleteExercise,
+                                showExercisesImages = showExercisesImages,
                                 isCollapsed = isReorderingEnabled,
                                 dragHandleModifier = Modifier.draggableHandle(
                                     onDragStarted = {
@@ -630,9 +637,9 @@ private fun WorkoutScreenPreview() {
                     target = 80.0
                 ),
                 sets = persistentListOf(
-                    UiSet(load = 32.0, reps = 10, completed = true),
-                    UiSet(load = 48.0, reps = 6, completed = true),
-                    UiSet(load = 56.0, reps = 3, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 10, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 6, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 3, completed = true),
                 )
             )
         ),
@@ -649,9 +656,9 @@ private fun WorkoutScreenPreview() {
                     category = Category.STRENGTH
                 ),
                 sets = persistentListOf(
-                    UiSet(load = 80.0, reps = 8, completed = true),
-                    UiSet(load = 80.0, reps = 9, completed = true),
-                    UiSet(load = 80.0, reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 8, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 9, completed = true),
                 )
             )
         ),
@@ -712,9 +719,9 @@ private fun WorkoutScreenPreview() {
                                     PreviousPerformanceSet(time = 612)
                                 ),
                                 listOf(
-                                    PreviousPerformanceSet(load = 80.0, reps = 7),
-                                    PreviousPerformanceSet(load = 80.0, reps = 8),
-                                    PreviousPerformanceSet(load = 80.0, reps = 8)
+                                    PreviousPerformanceSet(load = Weight.kilograms(80.0), reps = 7),
+                                    PreviousPerformanceSet(load = Weight.kilograms(80.0), reps = 8),
+                                    PreviousPerformanceSet(load = Weight.kilograms(80.0), reps = 8)
                                 ),
                                 listOf(
                                     PreviousPerformanceSet(reps = 7),
@@ -732,6 +739,7 @@ private fun WorkoutScreenPreview() {
                             workoutProgress = workoutProgress,
                             isHeaderSticky = true,
                             useScrollWheelForInput = true,
+                            showExercisesImages = null,
                             dismissScrollWheelInputAutomatically = false,
                             toggleStopwatch = {},
                             addSetToExercise = {},

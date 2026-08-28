@@ -45,6 +45,7 @@ import org.librefit.enums.WorkoutState
 import org.librefit.enums.exercise.Category
 import org.librefit.enums.exercise.Equipment
 import org.librefit.helpers.SoundPlayer
+import org.librefit.models.Weight
 import org.librefit.nav.Route
 import org.librefit.services.WorkoutService
 import org.librefit.services.WorkoutServiceManager
@@ -65,6 +66,7 @@ import org.librefit.ui.models.recalcWarmupSets
 import org.librefit.ui.models.withNormalizedExercisePositions
 import javax.inject.Inject
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
@@ -109,7 +111,7 @@ class WorkoutScreenViewModel @Inject constructor(
 
             updateSetTime(newElapsedTime.toInt(), set.id)
 
-            delay(1000)
+            delay(1000.milliseconds)
         }
     }
 
@@ -140,7 +142,7 @@ class WorkoutScreenViewModel @Inject constructor(
                 List(eWs.sets.size) { index ->
                     val previousSet = previousEWS?.sets?.getOrNull(index)
                     val reps = previousSet?.reps ?: 0
-                    val load = previousSet?.load ?: 0.0
+                    val load = previousSet?.load ?: Weight.zero()
                     val time = previousSet?.elapsedTime ?: 0
 
 
@@ -356,7 +358,7 @@ class WorkoutScreenViewModel @Inject constructor(
         syncToRepository()
     }
 
-    fun updateSetLoad(load: Double, id: Long) {
+    fun updateSetLoad(load: Weight, id: Long) {
         _workoutItems.update { currentWorkoutItems ->
             currentWorkoutItems.map { workoutItem ->
                 if (workoutItem.sets.any { it.id == id }) {
@@ -644,7 +646,7 @@ class WorkoutScreenViewModel @Inject constructor(
                     t
                 )
             }
-                .debounce(2000L)
+                .debounce(2000.milliseconds)
                 .collect { state ->
                     // Do not save when user navigates away
                     if (isFocused) {
@@ -678,4 +680,6 @@ class WorkoutScreenViewModel @Inject constructor(
     val useScrollWheelForInput = userPreferences.useScrollWheelForInput
 
     val dismissScrollWheelInputAutomatically = userPreferences.dismissScrollWheelInputAutomatically
+
+    val displayExercisesImages = userPreferences.showExercisesImages
 }

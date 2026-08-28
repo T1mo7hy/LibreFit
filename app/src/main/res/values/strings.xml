@@ -114,6 +114,15 @@
     <string name="url_mister_bum" translatable="false">https://github.com/mister-bum</string>
     <string name="BigP0tato" translatable="false">BigP0tato</string>
     <string name="url_BigP0tato" translatable="false">https://github.com/B1gP0tato</string>
+    <string name="Jent1357" translatable="false">Jent1357</string>
+    <string name="url_Jent1357" translatable="false">https://github.com/Jent1357</string>
+    <string name="Ahmedbd23" translatable="false">Ahmedbd23</string>
+    <string name="url_Ahmedbd23" translatable="false">https://github.com/Ahmedbd23</string>
+    <string name="tomel51733" translatable="false">tomel51733</string>
+    <string name="T_Silverspoon" translatable="false">T-Silverspoon</string>
+    <string name="url_T_Silverspoon" translatable="false">https://github.com/T-Silverspoon</string>
+    <string name="ByYeah" translatable="false">ByYeah</string>
+    <string name="url_ByYeah" translatable="false">https://github.com/ByYeah</string>
 
 
     <!--Before saving screen-->
@@ -227,6 +236,8 @@
     <string name="delete_exercise_from_dataset">Delete exercise from dataset?</string>
     <string name="delete_exercise_from_dataset_desc">Warning: all associated exercises will be deleted! This action cannot be reversed.</string>
     <string name="ai_images_warning">⚠️ AI generated images are continuously reviewed but may contain inaccuracies and/or artifacts. For a more accurate exercise description, see the relative instructions.</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
 
 
     <!--Measurement screen-->
@@ -249,6 +260,8 @@
     <string name="dont_ask_again">Don\'t ask again</string>
     <string name="skip_for_now">Skip for now</string>
     <string name="label_continue">Continue</string>
+    <string name="notifications_permission_permanently_denied_desc">Notifications are blocked. Please enable them in system settings to receive workout updates.</string>
+    <string name="open_settings">Open Settings</string>
 
 
     <!--Profile screen-->
@@ -310,6 +323,13 @@
     <string name="dismiss_scroll_wheel_automatically">Dismiss scroll wheel automatically</string>
     <string name="dismiss_scroll_wheel_automatically_desc">The scroll wheel will be dismissed automatically.</string>
     <string name="dismiss_scroll_wheel_manually_desc">The scroll wheel will have to be dismissed manually.</string>
+    <string name="show_images">Show images</string>
+    <string name="hide_images_desc">Images of exercises will be hidden</string>
+    <string name="show_images_desc">Images of exercises will be shown</string>
+    <string name="settings_location">Location</string>
+    <string name="unit_system">Unit system</string>
+    <string name="metric">Metric</string>
+    <string name="imperial">Imperial</string>
 
     <!--- Languages -->
     <string name="language">Language</string>
@@ -349,6 +369,8 @@
     <string name="language_russian">Russian</string>
     <string name="language_korean_nt" translatable="false">한국어</string>
     <string name="language_korean">Korean</string>
+    <string name="language_swedish_nt" translatable="false">Svenska</string>
+    <string name="language_swedish">Swedish</string>
 
     <!-- Statistics screen-->
     <string name="past">Past</string>
@@ -457,6 +479,7 @@
     <!--Exercise card-->
     <string name="rest_time">Rest time</string>
     <string name="kg" translatable="false">kg</string>
+    <string name="lb" translatable="false">lb</string>
     <string name="type_of_set">Type of set</string>
     <string name="previous">Previous</string>
 

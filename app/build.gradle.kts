@@ -39,16 +39,17 @@ android {
         minSdk = 26
         targetSdk = 37
 
-        versionName = "0.3.1"
-        versionCode = 30101
+        versionName = "0.4.1"
+        versionCode = 40101
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
         androidResources {
+            generateLocaleConfig = true
             localeFilters += setOf(
-                "en", "it", "de", "nl", "es", "cs", "zh-rCN", "pt-rBR"
+                "en", "it", "de", "nl", "es", "cs", "zh-rCN", "pt-rBR", "ru"
             )
         }
 
@@ -172,9 +173,6 @@ dependencies {
     // DataStore
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.androidx.datastore.preferences)
-
-    // Google accompanist to handle permissions in jetpack compose
-    implementation(libs.accompanist.permissions)
 
     // Lottie animations for jetpack compose
     implementation(libs.lottie.compose)

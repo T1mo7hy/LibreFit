@@ -68,6 +68,7 @@ import org.librefit.enums.SuccessMessage
 import org.librefit.enums.exercise.Category
 import org.librefit.enums.exercise.Equipment
 import org.librefit.enums.userPreferences.ThemeMode
+import org.librefit.models.Weight
 import org.librefit.nav.Route
 import org.librefit.ui.components.HeadlineText
 import org.librefit.ui.components.LibreFitButton
@@ -84,6 +85,10 @@ import org.librefit.ui.models.UiSet
 import org.librefit.ui.models.UiWarmupItem
 import org.librefit.ui.models.UiWorkout
 import org.librefit.ui.models.UiWorkoutItem
+import org.librefit.ui.models.autoUnitSuffix
+import org.librefit.ui.models.doubleValue
+import org.librefit.ui.models.doubleValueAsString
+import org.librefit.ui.models.toWeight
 import org.librefit.ui.theme.LibreFitTheme
 import org.librefit.util.Formatter
 import org.librefit.util.textFieldTransformations.TimeInputTransformation
@@ -202,7 +207,7 @@ fun SharedTransitionScope.BeforeSavingScreenContent(
     workoutItems: List<UiWorkoutItem>,
     workout: UiWorkout,
     routine: UiWorkout,
-    volumeExercises: String,
+    volumeExercises: Weight,
     isTitleTooLong: Boolean,
     isTitleEmpty: Boolean,
     animatedVisibilityScope: AnimatedVisibilityScope,
@@ -367,9 +372,9 @@ fun SharedTransitionScope.BeforeSavingScreenContent(
                     OutlinedTextField(
                         shape = MaterialTheme.shapes.large,
                         modifier = Modifier.weight(0.5f),
-                        value = volumeExercises,
+                        value = volumeExercises.doubleValueAsString(),
                         label = { Text(stringResource(R.string.volume)) },
-                        suffix = { Text(stringResource(R.string.kg)) },
+                        suffix = { Text(autoUnitSuffix()) },
                         onValueChange = {},
                         readOnly = true,
                         singleLine = true,
@@ -577,21 +582,21 @@ private fun BeforeSavingScreenPreview() {
                     category = Category.STRENGTH
                 ),
                 sets = persistentListOf(
-                    UiSet(load = 80.0, reps = 8, completed = true),
-                    UiSet(load = 80.0, reps = 9, completed = true),
-                    UiSet(load = 80.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 8, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 8, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 8, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 8, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
-                    UiSet(load = 50.0, reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 8, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(80.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 8, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 8, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 8, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 8, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
+                    UiSet(load = Weight.kilograms(50.0), reps = 9, completed = true),
                 )
             )
         ),
@@ -633,7 +638,7 @@ private fun BeforeSavingScreenPreview() {
         )
     )
 
-    val volume = w.sumOf { eWs -> eWs.sets.sumOf { it.load * it.reps } }
+    val volume = w.sumOf { eWs -> eWs.sets.sumOf { it.load.doubleValue() * it.reps } }.toWeight()
 
     LibreFitTheme(dynamicColor = false, themeMode = ThemeMode.DARK) {
         SharedTransitionLayout {
@@ -649,7 +654,7 @@ private fun BeforeSavingScreenPreview() {
                         timeElapsed = 3689
                     ),
                     routine = UiWorkout(title = "\uD83C\uDFCB Upper body"),
-                    volumeExercises = "$volume",
+                    volumeExercises = volume,
                     isTitleTooLong = false,
                     isTitleEmpty = false,
                     useScrollWheelForInput = true,
